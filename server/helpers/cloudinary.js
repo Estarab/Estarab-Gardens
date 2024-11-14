@@ -2,13 +2,13 @@ const cloudinary = require("cloudinary").v2;
 const multer = require("multer");
 
 cloudinary.config({
-  cloud_name: "",
-  api_key: "",
-  api_secret: "",
+  cloud_name: 'dzupv5f6n',
+  api_key: '595257398685653',
+  api_secret: 'B1RLDx-kDbckCjAXT5aBYOYXd_g',
 });
 
 const storage = new multer.memoryStorage();
-
+ 
 async function imageUploadUtil(file) {
   const result = await cloudinary.uploader.upload(file, {
     resource_type: "auto",
