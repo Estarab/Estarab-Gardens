@@ -66,22 +66,27 @@ export const addProductFormElements = [
       { id: "palm-trees", label: "Palm Trees" },
       { id: "fruit-trees", label: "Fruit Trees" },
       { id: "conifers", label: "Conifers" },
-      { id: "ashok-trees", label: "Ashok Trees" },
       { id: "indoor-plants", label: "Indoor Plants" },
+      { id: "outdoor-plants", label: "Outdoor Plants/Trees" },
     ],
   },
-  // {
-  //   label: "Plant Type",
-  //   name: "type",
-  //   componentType: "select",
-  //   options: [
-  //     { id: "tree", label: "Tree" },
-  //     { id: "shrub", label: "Shrub" },
-  //     { id: "flower", label: "Flower" },
-  //     { id: "climber", label: "Climber" },
-  //     { id: "cactus", label: "Cactus" },
-  //   ],
-  // },
+  {
+    label: "Plant's Characteristics",
+    name: "characterics",
+    componentType: "select",
+    options: [
+      { id: "climbing", label: "Climbing & Vine Plants" },
+    { id: "easy-care", label: "Easy Care" },
+    { id: "blossoms", label: "Blossoms" },
+    { id: "shade-forming", label: "Shade Forming" },
+    { id: "air-purifying", label: "Air Purifying" },
+      // { id: "tree", label: "Tree" },
+      // { id: "shrub", label: "Shrub" },
+      // { id: "flower", label: "Flower" },
+      // { id: "climber", label: "Climber" },
+      // { id: "cactus", label: "Cactus" },
+    ],
+  },
   {
     label: "Price",
     name: "price",
@@ -139,23 +144,23 @@ export const shoppingViewHeaderMenuItems = [
     path: "/shop/listing",
   },
   {
-    id: "ashok-trees",
-    label: "Ashok Trees",
-    path: "/shop/listing",
-  },
-  {
     id: "indoor-plants",
     label: "Indoor Plants",
     path: "/shop/listing",
   },
   {
-    id: "plant-care",
-    label: "Plant Care",
+    id: "outdoor-plants",
+    label: "Outdoor Plants",
     path: "/shop/listing",
   },
   {
-    id: "gardening-tools",
-    label: "Gardening Tools",
+    id: "landscaping",
+    label: "Landscaping Services",
+    path: "/shop/listing",
+  },
+  {
+    id: "plant-care",
+    label: "Plant Care",
     path: "/shop/listing",
   },
   {
@@ -165,14 +170,14 @@ export const shoppingViewHeaderMenuItems = [
   },
 ];
 
-// Category Options Map for Filter (updated to match categories)
+// Category Options Map for Filter (menu updated to match categories)
 export const categoryOptionsMap = {
   "palm-trees": "Palm Trees",
   "fruit-trees": "Fruit Trees",
   "conifers": "Conifers",
-  "ashok-trees": "Ashok Trees",
-  "indoor-plants": "Indoor Plants",
-  "gardening-tools": "Gardening Tools",
+  "indoor-plants": "Indoor Plants ",
+  "outdoor-plants": "Outdoor Plants & Trees",
+  "landscaping": "Landscaping Services",
   "plant-care": "Plant Care",
 };
 
@@ -190,15 +195,16 @@ export const filterOptions = {
     { id: "palm-trees", label: "Palm Trees" },
     { id: "fruit-trees", label: "Fruit Trees" },
     { id: "conifers", label: "Conifers" },
-    { id: "ashok-trees", label: "Ashok Trees" },
     { id: "indoor-plants", label: "Indoor Plants" },
+    { id: "outdoor-plants", label: "Outdoor Plants/Trees" },
   ],
-  // brand: [
-  //   { id: "aero-garden", label: "AeroGarden" },
-  //   { id: "miracle-grow", label: "Miracle-Gro" },
-  //   { id: "home-depot", label: "Home Depot" },
-  //   { id: "lowes", label: "Lowe's" },
-  // ],
+  characteristics: [
+    { id: "climbing", label: "Climbing & Vine Plants" },
+    { id: "easy-care", label: "Easy Care" },
+    { id: "blossoms", label: "Blossoms" },
+    { id: "shade-forming", label: "Shade Forming" },
+    { id: "air-purifying", label: "Air Purifying" },
+  ],
 };
 
 // Sort Options for Product Sorting (by price and title)
@@ -249,7 +255,7 @@ export const addressFormControls = [
 
 
 
-// // Updated form controls and e-commerce structure for a plant-based store
+// Updated form controls and e-commerce structure for a plant-based store
 
 // export const registerFormControls = [
 //   {
