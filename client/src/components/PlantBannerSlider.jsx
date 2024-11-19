@@ -35,11 +35,11 @@ function PlantBannerSlider() {
   // Change the heading every 4 seconds
   useEffect(() => {
     const headingTimer = setInterval(() => {
-      setCurrentHeading((prevHeading) => (prevHeading + 1) % 4 );  // Loop through 4 messages
-    }, 4000); // 4 seconds interval
+      setCurrentHeading((prevHeading) => (prevHeading + 1) % slidingHeadings.length );  // Loop through all 4 messages
+    }, 4000); // 4 seconds interval for heading change
 
     const slideTimer = setInterval(() => {
-      setCurrentSlide((prevSlide) => (prevSlide + 1) % plantBanners.length);
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % plantBanners.length); // Auto slide every 5 seconds
     }, 5000); // 5 seconds for auto slide
 
     return () => {
@@ -60,8 +60,19 @@ function PlantBannerSlider() {
     <div className="relative w-full min-h-screen overflow-hidden bg-[#228B22]"> {/* Green background */}
       
       {/* Sliding Heading at the top */}
-      <div className="absolute top-0 left-0 w-full bg-[#4CAF50] text-white py-3 text-center animate-slide">
-        <p className="text-xl md:text-2xl font-semibold">{slidingHeadings[currentHeading]}</p>
+      <div className="absolute top-0 left-0 w-full bg-[#4CAF50] text-white py-6 text-center">
+        <div className="relative flex justify-center items-center">
+          {slidingHeadings.map((heading, index) => (
+            <p
+              key={index}
+              className={`absolute text-xl md:text-2xl font-semibold transition-all duration-1000 ease-in-out
+                ${currentHeading === index ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'}
+                ${currentHeading === (index + 1) % slidingHeadings.length ? 'translate-x-[-100%] opacity-0' : ''}`}
+            >
+              {heading}
+            </p>
+          ))}
+        </div>
       </div>
       
       {/* Banner Slide Images */}
@@ -120,6 +131,132 @@ function PlantBannerSlider() {
 }
 
 export default PlantBannerSlider;
+
+
+
+
+// import { Button } from "@/components/ui/button";
+// import { useState, useEffect } from "react";
+// import { useNavigate } from "react-router-dom";
+
+// const plantBanners = [
+//   {
+//     id: "ashok-tree-banner",
+//     name: "Conifers",
+//     description: "Add greenery to your landscape with our stunning collection of conifers.",
+//     image: "/assets/img01.png", 
+//   },
+//   {
+//     id: "swanes-gold-banner",
+//     name: "FRUIT TREES",
+//     description: "Discover a wide variety of fruit trees perfect for your garden or orchard.",
+//     image: "/assets/img02.png",
+//   },
+//   {
+//     id: "king-palm-banner",
+//     name: "Indoor Plants",
+//     description: "Bring nature indoors with our selection of vibrant and low-maintenance indoor plants",
+//     image: "/assets/img9.png",
+//   },
+// ];
+
+// function PlantBannerSlider() {
+//   const [currentSlide, setCurrentSlide] = useState(0);
+//   const [currentHeading, setCurrentHeading] = useState(0);
+//   const navigate = useNavigate();
+
+//   const handleViewAllPlants = () => {
+//     navigate('/shop/listing');
+//   };
+
+//   // Change the heading every 4 seconds
+//   useEffect(() => {
+//     const headingTimer = setInterval(() => {
+//       setCurrentHeading((prevHeading) => (prevHeading + 1) % 4 );  // Loop through 4 messages
+//     }, 4000); // 4 seconds interval
+
+//     const slideTimer = setInterval(() => {
+//       setCurrentSlide((prevSlide) => (prevSlide + 1) % plantBanners.length);
+//     }, 5000); // 5 seconds for auto slide
+
+//     return () => {
+//       clearInterval(headingTimer);
+//       clearInterval(slideTimer);
+//     };
+//   }, []);
+
+//   // Define sliding heading messages
+//   const slidingHeadings = [
+//     " 🌴 A Complete Solution for your Gardening Needs! 🌴",
+//     "🌿 A Sanctuary where your botanical dreams take root and flourish! 🌻",
+//     " Delivery Services Available! 🚚 ",
+//     " Landscaping Services Provided! 🏡",
+//   ];
+
+//   return (
+//     <div className="relative w-full min-h-screen overflow-hidden bg-[#228B22]"> {/* Green background */}
+      
+//       {/* Sliding Heading at the top */}
+//       <div className="absolute top-0 left-0 w-full bg-[#4CAF50] text-white py-3 text-center animate-slide">
+//         <p className="text-xl md:text-2xl font-semibold">{slidingHeadings[currentHeading]}</p>
+//       </div>
+      
+//       {/* Banner Slide Images */}
+//       {plantBanners.map((banner, index) => (
+//         <div
+//           key={banner.id}
+//           className={`absolute top-0 left-0 w-full h-full transition-opacity duration-1000 ${
+//             index === currentSlide ? "opacity-100" : "opacity-0"
+//           }`}
+//         >
+//           <div className="flex flex-col md:flex-row items-center justify-center w-full h-full px-8 py-12">
+//             {/* Left Section - Company Name and About */}
+//             <div className="flex flex-col justify-center items-center text-white w-full md:w-1/2 mb-6 md:mb-0">
+//               <h2 className="text-3xl md:text-5xl font-bold mb-4 text-center">{banner.name}</h2>
+//               <p className="text-lg md:text-xl mb-6 text-center">{banner.description}</p>
+
+//               {/* View All Plants Button (on Desktop, next to the paragraph) */}
+//               <div className="w-full md:w-auto md:flex md:justify-start md:mt-4">
+//                 <Button
+//                   variant="primary"
+//                   size="lg"
+//                   onClick={handleViewAllPlants}
+//                   className="px-8 py-3 text-xl bg-white text-[#228B22] hover:bg-[#4CAF50] hover:text-white transition-all duration-300 hidden md:block"
+//                 >
+//                   View All Plants
+//                 </Button>
+//               </div>
+//             </div>
+
+//             {/* Right Section - Plant Image */}
+//             <div className="w-full md:w-1/2 flex justify-center mt-6 md:mt-0">
+//               <img
+//                 src={banner.image}
+//                 alt={banner.name}
+//                 className="object-contain w-full h-72 md:h-80 lg:h-96 xl:h-96" // Fixed height for images
+//               />
+//             </div>
+//           </div>
+//         </div>
+//       ))}
+
+//       {/* Mobile View - View All Plants Button (After Image) */}
+//       <div className="absolute bottom-10 md:hidden w-full flex justify-center">
+//         <Button
+//           variant="primary"
+//           size="lg"
+//           onClick={handleViewAllPlants}
+//           className="px-8 py-3 text-xl bg-white text-[#228B22] hover:bg-[#4CAF50] hover:text-white transition-all duration-300"
+//         >
+//           View All Plants
+//         </Button>
+//       </div>
+
+//     </div>
+//   );
+// }
+
+// export default PlantBannerSlider;
 
 
 

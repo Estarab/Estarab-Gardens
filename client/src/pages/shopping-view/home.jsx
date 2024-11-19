@@ -8,6 +8,7 @@ import { fetchProductDetails } from "@/store/shop/products-slice";
 import PlantBannerSlider from "@/components/PlantBannerSlider";
 import ShopByCategory from "@/components/ShopByCategory";
 import FeaturedPlantsAndTrees from "@/components/FeaturedPlantsAndTrees";
+import WelcomeComponent from "@/components/WelcomeComponent";
 
 function ShoppingHome() {
   const { productList, productDetails } = useSelector((state) => state.shopProducts);
@@ -49,6 +50,7 @@ function ShoppingHome() {
     <div className="flex flex-col min-h-screen">
       {/* Banner Slider */}
       <PlantBannerSlider />
+      <WelcomeComponent/>
 
       {/* Shop by Category */}
       <ShopByCategory />
